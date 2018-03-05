@@ -47,7 +47,7 @@ package a2_27043651.task4;
 		//private static Semaphore s2 = new Semaphore(...);
 		
 		
-		//added 4 integers to establish counts for barrier Synchronization.
+		//added 2 integers to establish counts for barrier Synchronization.
 		private static final int N = 10;
 		private static int ab = 0;
 		

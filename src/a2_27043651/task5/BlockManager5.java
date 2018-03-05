@@ -35,12 +35,13 @@ package a2_27043651.task5;
 		private static Semaphore mutex = new Semaphore(1);
 
 		 
-		//Changed/added semaphore S1 for Task4's barrier Synchronization.
 		/**
 		 * s1 is to make sure phase I for all is done before any phase II begins
 		 */
 		private static Semaphore s1 = new Semaphore(0);
 
+		
+		//TASK5 semaphore for TESTandSET synchronization
 		/**
 		 * s2 is for use in conjunction with Thread.turnTestAndSet() for phase II proceed
 		 * in the thread creation order
@@ -48,7 +49,7 @@ package a2_27043651.task5;
 		private static Semaphore s2 = new Semaphore(1);
 		
 		
-		//added 4 integers to establish counts for barrier Synchronization.
+		
 		private static final int N = 10;
 		private static int ab = 0;
 
@@ -154,7 +155,7 @@ package a2_27043651.task5;
 			 */
 			private char cCopy;
 
-			//TASK4 added barrier synchronization.
+			//TASK5 added TESTandSET synchronization
 			public void run()
 			{
 			
@@ -207,11 +208,11 @@ package a2_27043651.task5;
 				
 				s1.P();
 				s1.V();
-				s2.P(); // From this point, only one thread can enter phase 2 at a time. 
+				s2.P();
 				while (!turnTestAndSet())
 				{
-					s2.V(); // These two lines are to give other
-					s2.P(); // threads a chance to check their turn.
+					s2.V();
+					s2.P();
 				}
 				phase2();
 				s2.V();
@@ -234,7 +235,7 @@ package a2_27043651.task5;
 			 */
 			private char cBlock = 'a';
 
-			//TASK4 added barrier synchronization
+			//TASK5 added TESTandSET synchronization
 			public void run()
 			{
 				
@@ -290,11 +291,11 @@ package a2_27043651.task5;
 				s1.P();
 				s1.V();
 				
-				s2.P(); // From this point, only one thread can enter phase 2 at a time. 
+				s2.P();  
 				while (!turnTestAndSet())
 				{
-					s2.V(); // These two lines are to give other
-					s2.P(); // threads a chance to check their turn.
+					s2.V(); 
+					s2.P(); 
 				}
 				phase2();
 				s2.V();
@@ -306,7 +307,7 @@ package a2_27043651.task5;
 		} // class ReleaseBlock
 
 
-		//TASK4 added barrier synchronization and a mutex for stack prober to get clean output
+		//TASK5 added TESTandSET synchronization
 		/**
 		 * Inner class CharStackProber to dump stack contents.
 		 */
@@ -359,11 +360,11 @@ package a2_27043651.task5;
 				s1.P();
 				s1.V();
 				
-				s2.P(); // From this point, only one thread can enter phase 2 at a time. 
+				s2.P(); 
 				while (!turnTestAndSet())
 				{
-					s2.V(); // These two lines are to give other
-					s2.P(); // threads a chance to check their turn.
+					s2.V(); 
+					s2.P(); 
 				}
 				phase2();
 				s2.V();
